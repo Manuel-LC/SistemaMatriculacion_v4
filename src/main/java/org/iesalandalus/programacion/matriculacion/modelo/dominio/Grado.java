@@ -15,7 +15,6 @@ public abstract class Grado {
         }
 
         setNombre(nombre);
-        setIniciales();
     }
 
     public String getNombre() {
@@ -30,6 +29,7 @@ public abstract class Grado {
             throw new IllegalArgumentException("ERROR: El nombre de un grado no puede estar vacío.");
         }
         this.nombre = nombre;
+        setIniciales();
     }
 
     private void setIniciales() {

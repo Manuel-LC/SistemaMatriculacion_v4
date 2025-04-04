@@ -1,18 +1,28 @@
-package org.iesalandalus.programacion.matriculacion.modelo.negocio;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAsignaturas;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Asignaturas {
+public class Asignaturas implements IAsignaturas {
 
     private static List<Asignatura> coleccionAsignaturas;
 
     public Asignaturas() {
         coleccionAsignaturas = new ArrayList<>();
+    }
+
+    @Override
+    public void comenzar() {
+
+    }
+
+    @Override
+    public void terminar() {
+
     }
 
     public List<Asignatura> get() {

@@ -1,20 +1,31 @@
-package org.iesalandalus.programacion.matriculacion.modelo.negocio;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.IMatriculas;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Matriculas {
+public class Matriculas implements IMatriculas {
 
     private static List<Matricula> coleccionMatriculas;
 
     public Matriculas() {
         coleccionMatriculas = new ArrayList<>();
+    }
+
+    @Override
+    public void comenzar() {
+
+    }
+
+    @Override
+    public void terminar() {
+
     }
 
     public List<Matricula> get() {
