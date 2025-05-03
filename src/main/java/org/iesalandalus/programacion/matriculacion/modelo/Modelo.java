@@ -4,6 +4,7 @@ import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.*;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.*;
 
 import javax.naming.OperationNotSupportedException;
@@ -11,20 +12,41 @@ import java.util.List;
 
 public class Modelo {
 
-    private Alumnos alumnos;
-    private Asignaturas asignaturas;
-    private CiclosFormativos ciclosFormativos;
-    private Matriculas matriculas;
+    private IAlumnos alumnos;
+    private IAsignaturas asignaturas;
+    private ICiclosFormativos ciclosFormativos;
+    private IMatriculas matriculas;
+    private IFuenteDatos fuenteDatos;
+
+    public Modelo(FactoriaFuenteDatos factoriaFuenteDatos) {
+        if (factoriaFuenteDatos == null) {
+            throw new NullPointerException("ERROR: La fuente de datos no puede ser nula.");
+        }
+
+        if (factoriaFuenteDatos == FactoriaFuenteDatos.MEMORIA) {
+            setFuenteDatos(factoriaFuenteDatos.crear());
+        } else if (factoriaFuenteDatos == FactoriaFuenteDatos.MYSQL) {
+            setFuenteDatos(factoriaFuenteDatos.crear());
+        }
+    }
+
+    private void setFuenteDatos(IFuenteDatos fuenteDatos) {
+        this.fuenteDatos = fuenteDatos;
+    }
 
     public void comenzar() {
-        alumnos = new Alumnos();
-        asignaturas = new Asignaturas();
-        ciclosFormativos = new CiclosFormativos();
-        matriculas = new Matriculas();
+        alumnos = fuenteDatos.crearAlumnos();
+        asignaturas = fuenteDatos.crearAsignaturas();
+        ciclosFormativos = fuenteDatos.crearCiclosFormativos();
+        matriculas = fuenteDatos.crearMatriculas();
         System.out.println("Modelo iniciado.");
     }
 
     public void terminar() {
+        alumnos.terminar();
+        asignaturas.terminar();
+        ciclosFormativos.terminar();
+        matriculas.terminar();
         System.out.println("Modelo terminado.");
     }
 
@@ -49,7 +71,7 @@ public class Modelo {
     }
 
     public Asignatura buscar(Asignatura asignatura) {
-        return asignaturas.buscar(asignatura);
+        return IAsignaturas.buscar(asignatura);
     }
 
     public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
@@ -80,7 +102,7 @@ public class Modelo {
         matriculas.insertar(matricula);
     }
 
-    public Matricula buscar(Matricula matricula) {
+    public Matricula buscar(Matricula matricula) throws OperationNotSupportedException {
         return matriculas.buscar(matricula);
     }
 
@@ -88,19 +110,19 @@ public class Modelo {
         matriculas.borrar(matricula);
     }
 
-    public List<Matricula> getMatriculas() {
+    public List<Matricula> getMatriculas() throws OperationNotSupportedException {
         return matriculas.get();
     }
 
-    public List<Matricula> getMatriculas(Alumno alumno) {
+    public List<Matricula> getMatriculas(Alumno alumno) throws OperationNotSupportedException {
         return matriculas.get(alumno);
     }
 
-    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) {
+    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         return matriculas.get(cicloFormativo);
     }
 
-    public List<Matricula> getMatriculas(String cursoAcademico) {
+    public List<Matricula> getMatriculas(String cursoAcademico) throws OperationNotSupportedException {
         return matriculas.get(cursoAcademico);
     }
 }

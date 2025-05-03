@@ -88,7 +88,7 @@ public class Controlador {
         modelo.insertar(matricula);
     }
 
-    public Matricula buscar(Matricula matricula) {
+    public Matricula buscar(Matricula matricula) throws OperationNotSupportedException {
         return modelo.buscar(matricula);
     }
 
@@ -96,19 +96,19 @@ public class Controlador {
         modelo.borrar(matricula);
     }
 
-    public List<Matricula> getMatriculas() {
+    public List<Matricula> getMatriculas() throws OperationNotSupportedException {
         return modelo.getMatriculas();
     }
 
-    public List<Matricula> getMatriculas(Alumno alumno) {
+    public List<Matricula> getMatriculas(Alumno alumno) throws OperationNotSupportedException {
         return modelo.getMatriculas(alumno);
     }
 
-    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) {
+    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         return modelo.getMatriculas(cicloFormativo);
     }
 
-    public List<Matricula> getMatriculas(String cursoAcademico) {
+    public List<Matricula> getMatriculas(String cursoAcademico) throws OperationNotSupportedException {
         return modelo.getMatriculas(cursoAcademico);
     }
 }
