@@ -1,22 +1,25 @@
-package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql;
 
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.*;
 
-public class FuenteDatosMemoria implements IFuenteDatos {
+public class FuenteDatosMySQL implements IFuenteDatos {
     @Override
     public IAlumnos crearAlumnos() {
-        return new Alumnos();
+        return Alumnos.getInstancia();
     }
+
     @Override
     public ICiclosFormativos crearCiclosFormativos() {
-        return new CiclosFormativos();
+        return CiclosFormativos.getInstancia();
     }
+
     @Override
     public IAsignaturas crearAsignaturas() {
-        return new Asignaturas();
+        return Asignaturas.getInstancia();
     }
+
     @Override
     public IMatriculas crearMatriculas() {
-        return new Matriculas();
+        return Matriculas.getInstancia();
     }
 }

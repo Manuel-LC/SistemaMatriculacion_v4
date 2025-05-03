@@ -25,6 +25,7 @@ public class Alumnos implements IAlumnos {
 
     }
 
+    @Override
     public List<Alumno> get() {
         return copiaProfundaAlumnos();
     }
@@ -39,10 +40,12 @@ public class Alumnos implements IAlumnos {
         return copiaAlumnos;
     }
 
+    @Override
     public int getTamano() {
         return coleccionAlumnos.size();
     }
 
+    @Override
     public void insertar(Alumno alumno) throws OperationNotSupportedException {
         if (alumno == null) {
             throw new NullPointerException("ERROR: No se puede insertar un alumno nulo.");
@@ -55,6 +58,7 @@ public class Alumnos implements IAlumnos {
         }
     }
 
+    @Override
     public Alumno buscar(Alumno alumno) {
         if (alumno == null) {
             throw new NullPointerException("ERROR: No se puede buscar un alumno nulo.");
@@ -71,6 +75,7 @@ public class Alumnos implements IAlumnos {
         }
     }
 
+    @Override
     public void borrar(Alumno alumno) throws OperationNotSupportedException {
         if (alumno == null) {
             throw new NullPointerException("ERROR: No se puede borrar un alumno nulo.");

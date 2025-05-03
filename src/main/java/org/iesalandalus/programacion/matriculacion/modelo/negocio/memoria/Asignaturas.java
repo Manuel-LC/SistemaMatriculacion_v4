@@ -25,6 +25,7 @@ public class Asignaturas implements IAsignaturas {
 
     }
 
+    @Override
     public List<Asignatura> get() {
         return copiaProfundaAsignaturas();
     }
@@ -39,10 +40,12 @@ public class Asignaturas implements IAsignaturas {
         return copiaAsignaturas;
     }
 
+    @Override
     public int getTamano() {
         return coleccionAsignaturas.size();
     }
 
+    @Override
     public void insertar(Asignatura asignatura) throws OperationNotSupportedException {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: No se puede insertar una asignatura nula.");
@@ -71,6 +74,7 @@ public class Asignaturas implements IAsignaturas {
         }
     }
 
+    @Override
     public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: No se puede borrar una asignatura nula.");

@@ -13,7 +13,7 @@ public class Asignatura {
     private Curso curso;
     private int horasDesdoble;
     private EspecialidadProfesorado especialidadProfesorado;
-    private CicloFormativo cicloFormativo;
+    private static CicloFormativo cicloFormativo;
 
     public Asignatura(String codigo, String nombre, int horasAnuales, Curso curso, int horasDesdoble, EspecialidadProfesorado especialidadProfesorado, CicloFormativo cicloFormativo) {
         setCodigo(codigo);
@@ -39,7 +39,7 @@ public class Asignatura {
         this.cicloFormativo = asignatura.cicloFormativo;
     }
 
-    public CicloFormativo getCicloFormativo() {
+    public static CicloFormativo getCicloFormativo() {
         return cicloFormativo;
     }
 

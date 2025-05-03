@@ -25,6 +25,7 @@ public class CiclosFormativos implements ICiclosFormativos {
 
     }
 
+    @Override
     public List<CicloFormativo> get() {
         return copiaProfundaCiclosFormativos();
     }
@@ -39,10 +40,12 @@ public class CiclosFormativos implements ICiclosFormativos {
         return copiaCiclosFormativos;
     }
 
+    @Override
     public int getTamano() {
         return coleccionCiclosFormativos.size();
     }
 
+    @Override
     public void insertar(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         if (cicloFormativo == null) {
             throw new NullPointerException("ERROR: No se puede insertar un ciclo formativo nulo.");
@@ -55,6 +58,7 @@ public class CiclosFormativos implements ICiclosFormativos {
         }
     }
 
+    @Override
     public CicloFormativo buscar(CicloFormativo cicloFormativo) {
         if (cicloFormativo == null) {
             throw new NullPointerException("ERROR: No se puede buscar un ciclo formativo nulo.");
@@ -71,6 +75,7 @@ public class CiclosFormativos implements ICiclosFormativos {
         }
     }
 
+    @Override
     public void borrar(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         if (cicloFormativo == null) {
             throw new NullPointerException("ERROR: No se puede borrar un ciclo formativo nulo.");

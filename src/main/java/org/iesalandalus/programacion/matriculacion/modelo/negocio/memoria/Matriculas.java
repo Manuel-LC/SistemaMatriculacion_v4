@@ -28,6 +28,7 @@ public class Matriculas implements IMatriculas {
 
     }
 
+    @Override
     public List<Matricula> get() {
         return copiaProfundaMatriculas();
     }
@@ -42,10 +43,12 @@ public class Matriculas implements IMatriculas {
         return copiaMatriculas;
     }
 
+    @Override
     public int getTamano() {
         return coleccionMatriculas.size();
     }
 
+    @Override
     public void insertar(Matricula matricula) throws OperationNotSupportedException {
         if (matricula == null) {
             throw new NullPointerException("ERROR: No se puede insertar una matrícula nula.");
@@ -58,6 +61,7 @@ public class Matriculas implements IMatriculas {
         }
     }
 
+    @Override
     public Matricula buscar(Matricula matricula) {
         if (matricula == null) {
             throw new NullPointerException("ERROR: No se puede buscar una matrícula nula.");
@@ -74,6 +78,7 @@ public class Matriculas implements IMatriculas {
         }
     }
 
+    @Override
     public void borrar(Matricula matricula) throws OperationNotSupportedException {
         if (matricula == null) {
             throw new NullPointerException("ERROR: No se puede borrar una matrícula nula.");
@@ -86,6 +91,7 @@ public class Matriculas implements IMatriculas {
         }
     }
 
+    @Override
     public List<Matricula> get(Alumno alumno) {
         List<Matricula> coleccionMatriculasAlumno = new ArrayList<>();
 
@@ -97,6 +103,7 @@ public class Matriculas implements IMatriculas {
         return coleccionMatriculasAlumno;
     }
 
+    @Override
     public List<Matricula> get(String cursoAcademico) {
         List<Matricula> coleccionMatriculasCurso = new ArrayList<>();
 
@@ -108,6 +115,7 @@ public class Matriculas implements IMatriculas {
         return coleccionMatriculasCurso;
     }
 
+    @Override
     public List<Matricula> get(CicloFormativo cicloFormativo) {
         List<Matricula> coleccionMatriculasCiclo = new ArrayList<>();
 
