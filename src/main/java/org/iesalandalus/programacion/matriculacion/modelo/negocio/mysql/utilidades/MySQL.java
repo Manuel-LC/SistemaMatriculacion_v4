@@ -20,8 +20,6 @@ public class MySQL {
             String conexionUrl = "jdbc:mysql://" + HOST + "/" + ESQUEMA + "?useSSL=false&serverTimezone=UTC";
             conexion = DriverManager.getConnection(conexionUrl, USUARIO, CONTRASENA);
 
-            System.out.println("Conexión establecida con la base de datos.");
-
         } catch (SQLException e) {
             System.err.println("ERROR: No se puede conectar con la base de datos: " + e.getMessage());
         }
@@ -32,7 +30,7 @@ public class MySQL {
     public static void cerrarConexion() {
         try {
             conexion.close();
-            System.out.println("Conexión cerrada correctamente.");
+
         } catch (SQLException e) {
             System.err.println("Error al cerrar la conexión: " + e.getMessage());
         }

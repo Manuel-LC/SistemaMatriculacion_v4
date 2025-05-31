@@ -5,7 +5,6 @@ import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.*;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.*;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.List;
@@ -39,6 +38,8 @@ public class Modelo {
         asignaturas = fuenteDatos.crearAsignaturas();
         ciclosFormativos = fuenteDatos.crearCiclosFormativos();
         matriculas = fuenteDatos.crearMatriculas();
+
+        System.out.println("Conexión establecida con la base de datos.");
         System.out.println("Modelo iniciado.");
     }
 
@@ -47,6 +48,8 @@ public class Modelo {
         asignaturas.terminar();
         ciclosFormativos.terminar();
         matriculas.terminar();
+
+        System.out.println("Conexión cerrada correctamente.");
         System.out.println("Modelo terminado.");
     }
 

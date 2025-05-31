@@ -138,6 +138,8 @@ public class Matriculas implements IMatriculas {
             throw new NullPointerException("ERROR: No se puede insertar una matrícula nula.");
         }
 
+        insertarAsignaturasMatricula(matricula.getIdMatricula(), matricula.getColeccionAsignaturas());
+
         String sql = "INSERT INTO matricula (idMatricula, cursoAcademico, fechaMatriculacion, fechaAnulacion, dni) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {

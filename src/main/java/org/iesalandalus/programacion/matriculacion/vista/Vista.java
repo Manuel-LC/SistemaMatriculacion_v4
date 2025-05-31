@@ -7,6 +7,7 @@ import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
+import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -298,7 +299,7 @@ public class Vista {
         }
     }
 
-    public void mostrarMatriculas() {
+    public void mostrarMatriculas() throws OperationNotSupportedException {
         List<Matricula> listaMatriculas = controlador.getMatriculas();
 
         listaMatriculas = listaMatriculas.stream().sorted(Comparator.comparing(Matricula::getFechaMatriculacion)

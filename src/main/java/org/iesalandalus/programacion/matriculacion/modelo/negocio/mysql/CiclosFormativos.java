@@ -39,7 +39,7 @@ public class CiclosFormativos implements ICiclosFormativos {
         MySQL.cerrarConexion();
     }
 
-    public Grado getGrado(String tipoGrado, String nombreGrado, int numAniosGrado, String modalidad, int numEdiciones) {
+    public static Grado getGrado(String tipoGrado, String nombreGrado, int numAniosGrado, String modalidad, int numEdiciones) {
         Grado grado = null;
         if (tipoGrado.equalsIgnoreCase("GradoD")) {
             if (modalidad.equalsIgnoreCase("Presencial")) {

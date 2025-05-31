@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.matriculacion.vista;
 
+import javax.naming.OperationNotSupportedException;
+
 public enum Opcion {
 
     SALIR("Salir") {
@@ -100,7 +102,7 @@ public enum Opcion {
     },
     MOSTRAR_MATRICULAS("Mostrar matrículas") {
         @Override
-        public void ejecutar() {
+        public void ejecutar() throws OperationNotSupportedException {
             vista.mostrarMatriculas();
         }
     },
@@ -137,7 +139,7 @@ public enum Opcion {
         Opcion.vista = vista;
     }
 
-    public abstract void ejecutar();
+    public abstract void ejecutar() throws OperationNotSupportedException;
 
     @Override
     public String toString() {

@@ -1,9 +1,6 @@
 package org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql;
 
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.Curso;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.EspecialidadProfesorado;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAsignaturas;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql.utilidades.MySQL;
 
@@ -64,7 +61,7 @@ public class Asignaturas implements IAsignaturas {
     @Override
     public List<Asignatura> get() {
         List<Asignatura> asignaturas = new ArrayList<>();
-        String consulta = "SELECT * FROM asignatura a JOIN cicloFormativo cf ON a.codigoCicloFormativo = cf.codigo ORDER BY nombre";
+        String consulta = "SELECT * FROM asignatura a JOIN cicloFormativo cf ON a.codigoCicloFormativo = cf.codigo ORDER BY a.nombre";
 
         try (Statement sentencia = conexion.createStatement();
              ResultSet resultado = sentencia.executeQuery(consulta)) {
@@ -76,9 +73,23 @@ public class Asignaturas implements IAsignaturas {
                 Curso curso = getCurso(resultado.getString("curso"));
                 int horasDesdoble = resultado.getInt("horasDesdoble");
                 EspecialidadProfesorado especialidad = getEspecialidadProfesorado(resultado.getString("especialidadProfesorado"));
-                int codigoCicloFormativo = resultado.getInt("codigoCicloFormativo");
 
-                Asignatura asignatura = new Asignatura(codigo, nombre, horasAnuales, curso, horasDesdoble, especialidad, Asignatura.getCicloFormativo());
+                int codigoCicloFormativo = resultado.getInt("codigoCicloFormativo");
+                String familiaProfesional = resultado.getString("cf.familiaProfesional");
+                String nombreCiclo = resultado.getString("cf.nombre");
+                int horas = resultado.getInt("cf.horas");
+
+                String tipoGrado = resultado.getString("cf.grado");
+                String nombreGrado = resultado.getString("cf.nombreGrado");
+                int numAniosGrado = resultado.getInt("cf.numAniosGrado");
+                String modalidad = resultado.getString("cf.modalidad");
+                int numEdiciones = resultado.getInt("cf.numEdiciones");
+
+                Grado grado = CiclosFormativos.getGrado(tipoGrado, nombreGrado, numAniosGrado, modalidad, numEdiciones);
+
+                CicloFormativo cicloFormativo = new CicloFormativo(codigoCicloFormativo, familiaProfesional, grado, nombreCiclo, horas);
+
+                Asignatura asignatura = new Asignatura(codigo, nombre, horasAnuales, curso, horasDesdoble, especialidad, cicloFormativo);
                 asignaturas.add(asignatura);
             }
 

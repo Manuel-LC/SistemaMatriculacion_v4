@@ -53,7 +53,7 @@ public class Alumnos implements IAlumnos {
                 String dni = resultado.getString("dni");
                 String correo = resultado.getString("correo");
                 String telefono = resultado.getString("telefono");
-                LocalDate fechaNacimiento = resultado.getDate("fecha_nacimiento").toLocalDate();
+                LocalDate fechaNacimiento = resultado.getDate("fechaNacimiento").toLocalDate();
 
                 Alumno alumno = new Alumno(nombre, dni, correo, telefono, fechaNacimiento);
                 alumnos.add(alumno);
@@ -87,13 +87,13 @@ public class Alumnos implements IAlumnos {
             throw new NullPointerException("ERROR: No se puede insertar un alumno nulo.");
         }
 
-        String insercion = "INSERT INTO alumno (nombre, dni, correo, telefono, fecha_nacimiento) VALUES (?, ?, ?, ?, ?)";
+        String insercion = "INSERT INTO alumno (nombre, telefono, correo, dni, fechaNacimiento) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement sentencia = conexion.prepareStatement(insercion)) {
             sentencia.setString(1, alumno.getNombre());
-            sentencia.setString(2, alumno.getDni());
+            sentencia.setString(2, alumno.getTelefono());
             sentencia.setString(3, alumno.getCorreo());
-            sentencia.setString(4, alumno.getTelefono());
+            sentencia.setString(4, alumno.getDni());
             sentencia.setDate(5, Date.valueOf(alumno.getFechaNacimiento()));
 
             sentencia.executeUpdate();
@@ -121,7 +121,7 @@ public class Alumnos implements IAlumnos {
                     String nombre = resultado.getString("nombre");
                     String correo = resultado.getString("correo");
                     String telefono = resultado.getString("telefono");
-                    LocalDate fechaNacimiento = resultado.getDate("fecha_nacimiento").toLocalDate();
+                    LocalDate fechaNacimiento = resultado.getDate("fechaNacimiento").toLocalDate();
 
                     return new Alumno(nombre, alumno.getDni(), correo, telefono, fechaNacimiento);
                 } else {
